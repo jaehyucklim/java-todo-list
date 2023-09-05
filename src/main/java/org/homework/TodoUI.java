@@ -7,28 +7,29 @@ public class TodoUI {
     private final Scanner scanner = new Scanner(System.in);
 
     public void app() {
-        TodoManager todoManager = new TodoManager();
-
-        while (true) {
-            Options option = getUserOption();
-
-            switch (option) {
-                case ADD:
-                    addTaskUI(todoManager);
-                    break;
-                case DEL:
-                    deleteTaskUI(todoManager);
-                    break;
-                case FIND:
-                    findTaskUI(todoManager);
-                    break;
-                case EXIT:
-                    System.out.println("프로그램을 종료합니다.");
-                    scanner.close();
-                    return;
-                default:
-                    System.out.println("잘못된 입력입니다.");
+        try {
+            while (true) {
+                Options option = getUserOption();
+                switch (option) {
+                    case ADD:
+                        addTaskUI();
+                        break;
+                    case DEL:
+                        deleteTaskUI();
+                        break;
+                    case FIND:
+                        findTaskUI();
+                        break;
+                    case EXIT:
+                        System.out.println("프로그램을 종료합니다.");
+                        scanner.close();
+                        return;
+                    default:
+                        System.out.println("잘못된 입력입니다.");
+                }
             }
+        } catch (RuntimeException e) {
+            System.out.println("프로그램을 종료합니다.");
         }
     }
 
@@ -65,7 +66,6 @@ public class TodoUI {
             int id = getIntInput("조회할 할 일의 ID를 입력하세요:", "잘못된 입력입니다.");
             String content = todoManager.findTask(id);
             System.out.println("할 일 ID: " + id + ", 내용: " + content);
-        }
     }
 
     public int getIntInput(String prompt, String errorMessage) {
@@ -79,7 +79,7 @@ public class TodoUI {
                 String retry = scanner.nextLine().trim().toLowerCase();
                 if (!retry.equals("y")) {
                     System.out.println("입력을 취소하셨습니다.");
-                    return -1; // 사용자가 재시도를 원하지 않을 경우
+                    throw new RuntimeException();
                 }
             }
         }

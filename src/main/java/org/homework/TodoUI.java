@@ -3,14 +3,8 @@ package org.homework;
 import java.util.Scanner;
 
 public class TodoUI {
+    TodoManager todoManager = new TodoManager(); // 전역 cover
     private final Scanner scanner = new Scanner(System.in);
-
-    public enum Options {
-        ADD,
-        DEL,
-        FIND,
-        EXIT
-    }
 
     public void app() {
         TodoManager todoManager = new TodoManager();
@@ -49,14 +43,14 @@ public class TodoUI {
         }
     }
 
-    private void addTaskUI(TodoManager todoManager) {
+    private void addTaskUI() {
         System.out.println("추가할 할 일을 입력하세요:");
         String content = scanner.nextLine();
         int id = todoManager.addTask(content);
         System.out.println("할 일이 추가되었습니다. ID: " + id);
     }
 
-    private void deleteTaskUI(TodoManager todoManager) {
+    private void deleteTaskUI() {
         int id = getIntInput("삭제할 할 일의 ID를 입력하세요:", "잘못된 입력입니다.");
         if (id != -1) {
             if (todoManager.deleteTask(id)) {
@@ -67,9 +61,8 @@ public class TodoUI {
         }
     }
 
-    private void findTaskUI(TodoManager todoManager) {
-        int id = getIntInput("조회할 할 일의 ID를 입력하세요:", "잘못된 입력입니다.");
-        if (id != -1) {
+    private void findTaskUI() {
+            int id = getIntInput("조회할 할 일의 ID를 입력하세요:", "잘못된 입력입니다.");
             String content = todoManager.findTask(id);
             System.out.println("할 일 ID: " + id + ", 내용: " + content);
         }

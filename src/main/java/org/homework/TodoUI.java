@@ -1,10 +1,12 @@
 package org.homework;
 
+
 import java.util.List;
 import java.util.Scanner;
 
 public class TodoUI {
     private final TodoManager todoManager = new TodoManager();
+
     private final Scanner scanner = new Scanner(System.in);
 
     public void app() {
@@ -21,6 +23,7 @@ public class TodoUI {
                     case FIND:
                         findTaskUI();
                         break;
+
                     case DOIT:
                         completeTaskUI();
                         break;
@@ -30,6 +33,7 @@ public class TodoUI {
                     case SEEK:
                         seekTaskUI();
                         break;
+
                     case EXIT:
                         System.out.println("프로그램을 종료합니다.");
                         scanner.close();
@@ -46,7 +50,9 @@ public class TodoUI {
     private Options getUserOption() {
         while (true) {
             try {
+
                 System.out.println("옵션을 선택하세요 (ADD, DEL, FIND, DOIT, LIST, SEEK, EXIT):");
+
                 return Options.valueOf(scanner.nextLine().toUpperCase());
             } catch (IllegalArgumentException e) {
                 System.out.println("잘못된 입력입니다. 다시 시도해 주세요.");
@@ -60,6 +66,7 @@ public class TodoUI {
         int id = todoManager.addTask(content);
         System.out.println("할 일이 추가되었습니다. ID: " + id);
     }
+
 
     private void completeTaskUI() { // doit
         int id = getIntInput("완료할 할 일의 ID를 입력하세요:", "잘못된 입력입니다.");
@@ -122,6 +129,7 @@ public class TodoUI {
         } else {
             System.out.println("해당 ID의 할 일이 없습니다.");
         }
+
     }
 
     public int getIntInput(String prompt, String errorMessage) {

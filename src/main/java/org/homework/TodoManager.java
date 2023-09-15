@@ -1,5 +1,6 @@
 package org.homework;
 
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -14,10 +15,12 @@ public class TodoManager {
     public int addTask(String task) {
         TodoItem todoItem = new TodoItem(currentId, task);
         tasks.put(currentId, todoItem);
+
         return currentId++;
     }
 
     public boolean deleteTask(int id) {
+
         return tasks.remove(id) != null;
     }
 
@@ -51,5 +54,6 @@ public class TodoManager {
         return tasks.values().stream()
                 .filter(todoItem -> todoItem.getContent().contains(keyword))
                 .collect(Collectors.toList());
+
     }
 }

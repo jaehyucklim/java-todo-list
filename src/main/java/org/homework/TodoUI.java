@@ -89,7 +89,7 @@ public class TodoUI {
     }
 
     private void listTaskUI() {
-        System.out.println("할 일 목록을 정렬 방법을 선택하세요:");
+        System.out.println("할 일 목록의 정렬 방법을 선택하세요:");
         System.out.println("1. 최근에 추가한 순서대로 출력");
         System.out.println("2. 오래된 순서대로 출력");
         int sortOption = getIntInput("옵션을 선택하세요 (1 또는 2):", "잘못된 입력입니다.");
